@@ -1,0 +1,237 @@
+/* 1. VARIABEL WARNA AMANMART */
+:root {
+    --primary-green: #24933F;
+    --secondary-green: #7ACA37;
+    --accent-green: #38AD47;
+    --white: #ffffff;
+    --text-dark: #1a1a1a;
+}
+
+/* 2. RESET DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* 3. HERO & BACKGROUND TOKO */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* Memanggil gambar background toko */
+    background-image: url('../images/logo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 4. OVERLAY HIJAU TRANSPARAN */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Mengubah #24933F menjadi RGB (36, 147, 63) dengan opacity 0.85 agar tembus pandang */
+    background-color: rgba(36, 147, 63, 0.3); 
+    z-index: 1;
+}
+
+/* 5. KONTEN (Di atas Overlay) */
+.content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 6. NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    width: 100%;
+}
+
+.logo img {
+    height: 45px; /* Tinggi logo */
+    width: auto;
+    /* OPSIONAL: Jika ingin logo hitam Anda otomatis menjadi putih semua agar kontras, 
+       hapus tanda "/*" pada baris di bawah ini */
+    /* filter: brightness(0) invert(1); */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-green);
+}
+
+.btn-contact {
+    background-color: var(--secondary-green);
+    padding: 10px 24px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.btn-contact:hover {
+    background-color: var(--accent-green);
+}
+
+/* 7. TEXT HERO TENGAH */
+.hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin-top: -60px;
+}
+
+.hero-text h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--text-dark); /* Huruf tebal gelap sesuai gambar */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.btn-cta {
+    background-color: var(--white);
+    color: var(--text-dark);
+    padding: 15px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+}
+
+/* 8. HAMBURGER MENU (Sembunyi di Desktop) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 100;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--white);
+    transition: 0.3s;
+}
+
+/* =========================================
+   9. RESPONSIVE DESIGN (TABLET & HP)
+========================================= */
+
+/* Untuk Layar Tablet */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 20px 5%;
+    }
+    .nav-links {
+        gap: 20px;
+    }
+    .hero-text h1 {
+        font-size: 4rem;
+    }
+}
+
+/* Untuk Layar Handphone (Mobile) */
+@media (max-width: 768px) {
+    /* Tampilkan Hamburger */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Ubah Menu Menjadi Sidebar */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Sembunyikan di luar layar kanan */
+        width: 70%;
+        height: 100vh;
+        background-color: var(--primary-green);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        z-index: 99;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    }
+
+    /* Kelas Aktif untuk Menampilkan Menu Sidebar */
+    .nav-links.active {
+        right: 0;
+    }
+
+    /* Animasi Hamburger menjadi 'X' */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Perkecil Teks di HP */
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+    .logo img {
+        height: 35px;
+    }
+}
+
+/* Untuk HP Layar Kecil */
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    .btn-cta {
+        padding: 12px 30px;
+        font-size: 14px;
+    }
+}

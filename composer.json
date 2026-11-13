@@ -1,0 +1,17 @@
+{
+    "name": "admin/amanmart-web",
+    "autoload": {
+        "psr-4": {
+            "Admin\\AmanmartWeb\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "anggoro1234",
+            "email": "anggoror179@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^8.2"
+    }
+}
